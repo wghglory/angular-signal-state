@@ -21,4 +21,8 @@ export const routes: Routes = [
     path: 'student-list-signal',
     component: StudentListSignalComponent,
   },
+  {
+    path: 'student-list-signal-computed-from',
+    component: StudentListSignalComponent,
+  },
 ];
