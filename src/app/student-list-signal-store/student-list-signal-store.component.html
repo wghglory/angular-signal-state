@@ -37,4 +37,6 @@
   </div>
 
   <app-alert *ngIf="store.$error()" [error]="store.$error()" class="mb-4"></app-alert>
+
+  <app-selected-student *ngIf="selectedStudent" [student]="selectedStudent" />
 </app-page-container>

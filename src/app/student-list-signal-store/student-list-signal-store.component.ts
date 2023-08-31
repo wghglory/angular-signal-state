@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, WritableSignal, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ClarityModule, ClrDatagridStateInterface } from '@clr/angular';
@@ -7,17 +7,18 @@ import { PageContainerComponent } from '../shared/components/page-container/page
 import { Student } from '../shared/models/student.model';
 
 import { StudentListStore } from './student-list.store';
+import { SelectedStudentComponent } from '../shared/components/selected-student/selected-student.component';
 
 @Component({
   selector: 'app-student-list-signal-store',
   standalone: true,
-  imports: [CommonModule, RouterLink, ClarityModule, PageContainerComponent, AlertComponent],
+  imports: [CommonModule, RouterLink, ClarityModule, PageContainerComponent, AlertComponent, SelectedStudentComponent],
   templateUrl: './student-list-signal-store.component.html',
   styleUrls: ['./student-list-signal-store.component.scss'],
   providers: [StudentListStore],
 })
 export class StudentListSignalStoreComponent {
-  selectedStudent: Student | undefined;
+  selectedStudent: Student | undefined = undefined;
 
   protected readonly store = inject(StudentListStore);
 
