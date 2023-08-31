@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ClarityIcons, vmBugIcon } from '@cds/core/icon';
+import { ClarityIcons, userIcon, vmBugIcon } from '@cds/core/icon';
 import { ClarityModule } from '@clr/angular';
+import { AppStore } from './app.store';
 
-ClarityIcons.addIcons(vmBugIcon);
+ClarityIcons.addIcons(vmBugIcon, userIcon);
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ ClarityIcons.addIcons(vmBugIcon);
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, ClarityModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'rx-clarity-template';
+  protected readonly store = inject(AppStore);
 }

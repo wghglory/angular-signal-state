@@ -17,6 +17,6 @@ import { ClarityModule } from '@clr/angular';
 export class AlertComponent {
   @Input() type = 'danger';
   @Input() isSmall = false;
-  @Input() error: HttpErrorResponse | undefined;
+  @Input() error: HttpErrorResponse | null = null;
   @Input() content = '';
 }

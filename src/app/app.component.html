@@ -3,11 +3,22 @@
     <div class="branding">
       <a class="nav-link" routerLink="/">
         <cds-icon shape="vm-bug"></cds-icon>
-        <span class="title">Playground</span>
+        <span class="title">Signal State Management</span>
       </a>
     </div>
     <div class="header-nav">
       <a class="nav-link" routerLink="/products" routerLinkActive="active"><span class="nav-text">Products</span></a>
+    </div>
+
+    <div class="header-actions">
+      <a href="javascript://" class="nav-link nav-icon-text">
+        <cds-icon shape="user"></cds-icon>
+        <span class="nav-text">{{ store.$currentUser()?.name }}</span>
+      </a>
+      <a href="javascript://" class="nav-link nav-icon-text">
+        Theme:
+        <span class="nav-text">{{ store.$theme() }}</span>
+      </a>
     </div>
   </header>
 
