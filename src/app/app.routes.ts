@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { StudentListRxjsComponent } from './student-list-rxjs/student-list-rxjs.component';
+import { StudentListSignalComponent } from './student-list-signal/student-list-signal.component';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'student-list-rxjs',
     component: StudentListRxjsComponent,
+  },
+  {
+    path: 'student-list-signal',
+    component: StudentListSignalComponent,
   },
 ];
