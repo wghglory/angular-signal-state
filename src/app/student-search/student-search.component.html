@@ -1,0 +1,18 @@
+<form clrForm [formGroup]="searchForm">
+  <clr-input-container>
+    <label>Search</label>
+    <input [formControl]="searchForm.controls.search" clrInput />
+  </clr-input-container>
+</form>
+
+<div class="mt-6" *ngIf="search$ | async as vm">
+  <app-spinner *ngIf="vm.loading" />
+  <ul *ngIf="vm.data as data">
+    <li *ngFor="let item of data.results">{{ item.email }}</li>
+  </ul>
+  <app-alert *ngIf="vm.error as error" [error]="error" />
+</div>
+
+<app-alert *ngIf="(saveAction$ | async)?.error as error" [error]="error" />
+
+<button class="btn btn-primary" (click)="save()" [clrLoading]="(saveAction$ | async)?.loading === true">Save</button>
