@@ -13,6 +13,10 @@
   <app-alert *ngIf="vm.error as error" [error]="error" />
 </div>
 
-<app-alert *ngIf="(saveAction$ | async)?.error as error" [error]="error" />
+<!-- rxjs way -->
+<!-- <app-alert *ngIf="(saveAction$ | async)?.error as error" [error]="error" />
+<button class="btn btn-primary" (click)="save()" [clrLoading]="(saveAction$ | async)?.loading === true">Save</button> -->
 
-<button class="btn btn-primary" (click)="save()" [clrLoading]="(saveAction$ | async)?.loading === true">Save</button>
+<!-- signal way -->
+<app-alert *ngIf="$saveAction().error as error" [error]="error" />
+<button class="btn btn-primary" (click)="save()" [clrLoading]="$saveAction().loading === true">Save</button>

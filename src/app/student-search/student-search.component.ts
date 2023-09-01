@@ -11,6 +11,7 @@ import { ApiQuery } from '../shared/models/api-query';
 import { switchMapWithLoading } from '../shared/operators/switchmap-with-loading.operator';
 import { api } from '../shared/operators/api.operator';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-student-search',
@@ -43,6 +44,7 @@ export class StudentSearchComponent {
 
   saveAction = new Subject<void>();
   saveAction$ = this.saveAction.pipe(
+    // switchMapWithLoading = switchMap + api
     switchMapWithLoading(() => {
       // This could be a POST request in real world
       const payload = this.searchForm.value;
@@ -54,6 +56,17 @@ export class StudentSearchComponent {
     //   return this.http.get<{ results: any }>(`https://randomuser.me/api?results=10`).pipe(api());
     // }),
     share(),
+  );
+
+  $saveAction = toSignal(
+    this.saveAction.pipe(
+      switchMapWithLoading(() => {
+        // This could be a POST request in real world
+        const payload = this.searchForm.value;
+        return this.http.get<{ results: any }>(`https://randomuser.me/api?results=10`);
+      }),
+    ),
+    { initialValue: { loading: false, error: null, data: null } },
   );
 
   private http = inject(HttpClient);
