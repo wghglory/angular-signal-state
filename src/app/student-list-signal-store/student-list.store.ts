@@ -8,6 +8,13 @@ import { stateHandler } from '../shared/utils/datagrid.util';
 import { StudentService } from '../shared/services/student.service';
 import { ClrDatagridStateInterface } from '@clr/angular';
 
+/**
+ * Feature Store or Local Store
+
+ * Feature store: The root component (or a route) of the feature should "provide" this store. Do not add this store to the providers of descendant components, otherwise, they will create their own, local instances of the feature store, and it will lead to unpleasant bugs.
+
+ * Local store: Pretty similar to a feature store, the component should provide this store to itself
+ */
 @Injectable()
 export class StudentListStore {
   studentService = inject(StudentService);

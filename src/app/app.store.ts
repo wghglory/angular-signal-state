@@ -3,6 +3,10 @@ import { EMPTY, concatMap, finalize, tap, timer } from 'rxjs';
 import { createEffect } from './shared/utils/create-effect';
 import { User } from './shared/models/user.model';
 
+/* Global Store
+  add this decorator: @Injectable({ providedIn: 'root' })
+ */
+
 @Injectable({ providedIn: 'root' })
 export class AppStore {
   private readonly state = {
